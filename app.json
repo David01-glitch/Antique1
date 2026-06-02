@@ -1,0 +1,27 @@
+{
+  "name": "Antique Clock Restorers",
+  "description": "An educational journal and community for restoring antique clocks and vintage collectibles. Pre-rendered React + Vite site served by Express.",
+  "repository": "https://github.com/antiqueclockrestorers/website",
+  "keywords": ["antique clocks", "restoration", "horology", "react", "vite", "express", "ssg"],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "echo 'Deployment complete.'"
+  },
+  "stack": "heroku-22"
+}

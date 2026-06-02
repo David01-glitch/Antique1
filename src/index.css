@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ivory text-navy font-body antialiased;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-midnight;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
+  :focus-visible {
+    outline: 3px solid #bd9b4c;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .prose-readable {
+    @apply max-w-prose text-[1.0625rem] leading-[1.78] text-slateDark;
+  }
+  .prose-readable p {
+    @apply mb-5;
+  }
+  .prose-readable h2 {
+    @apply mt-10 mb-4 text-2xl;
+  }
+  .prose-readable h3 {
+    @apply mt-8 mb-3 text-xl;
+  }
+  .prose-readable ul {
+    @apply mb-5 list-disc space-y-2 pl-6;
+  }
+  .card {
+    @apply rounded-xl border border-brass/20 bg-white/70 shadow-card;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-brass;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-midnight px-6 py-3 font-semibold text-ivory shadow-card transition hover:bg-navy focus-visible:outline-brass;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-xl border border-brass/50 px-6 py-3 font-semibold text-navy transition hover:border-brass hover:bg-parchment;
+  }
+  .accordion-panel {
+    overflow: hidden;
+    transition: grid-template-rows 0.35s ease;
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+  .accordion-panel[data-open='true'] {
+    grid-template-rows: 1fr;
+  }
+  .accordion-inner {
+    min-height: 0;
+  }
+}
+
+/* Keep prerendered (no-JS) content visible: panels rely on data-open but
+   the inner content remains in the DOM and is readable by crawlers. */
+.noscript-open .accordion-panel {
+  grid-template-rows: 1fr;
+}
