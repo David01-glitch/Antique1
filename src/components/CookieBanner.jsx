@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom'
 import { grantConsent, denyConsent, getStoredConsent } from '../utils/analytics'
 
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false)
+  // Render the banner during static generation so the raw HTML always
+  // contains the cookie-consent text and controls (crawlers, ad reviewers,
+  // and visitors with JavaScript disabled all see it).
+  // After hydration we hide it only if the visitor has already made a choice.
+  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
-    if (!getStoredConsent()) {
-      const t = setTimeout(() => setVisible(true), 600)
-      return () => clearTimeout(t)
+    if (getStoredConsent()) {
+      setVisible(false)
     }
   }, [])
 
